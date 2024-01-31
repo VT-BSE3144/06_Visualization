@@ -1,0 +1,154 @@
+---
+title: "Week 5 - Visualization HW"
+author: "Your name here"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readxl)
+library(tidyverse)
+library(ggplot2)
+
+
+library(dataRetrieval)
+library(tidyverse)
+library(ggforce)
+library(ggridges)
+library(cowplot)
+library(ggthemes)
+```
+
+# Dr. Senger's plot 2a
+
+Figure 1. Dr. Senger is a Metabolic Engineer in our department; perhaps you've had a class with him or will in the next year or two. His work includes developing biosensors, and he has a recent biosensor publication, available in Pubmed (see here). Imagine you’re an undergrad researcher in Dr. Senger’s group, and are asked to recreate figure 2a from the publication within Rstudio. The raw data for the figure is available in the supplemental information, and in the Rstudio workspace for this week as an excel file (file contains data for all figures). Follow examples for bar graphs from the exercises (visualizing amounts)
+
+## Read in and wrangle the data
+
+Let's read in the raw data from the supplement and format it. 
+
+```{r}
+SupplementaryRawDataR2 <- read_excel("raw_data/SupplementaryRawDataR2.xlsx", sheet = "Sheet1")
+# select part of data frame related to figure 2a
+ff <- SupplementaryRawDataR2[1:9,4:6] 
+# change column names
+colnames(ff) <- c("media", "b","PHB") 
+# change the PHB column from characters to numbers
+ff$PHB <- as.numeric(ff$PHB) 
+```
+
+## Plot
+
+Here is a template for your plot code. Uncomment the below (highlight and click Code>Comment/Uncomment Lines) and fill in the underscore blanks and ellipses (...). Be sure that the plot contains proper labels, etc. 
+
+
+```{r}
+#p <- ggplot(ff, aes(x = _____, y = ______, fill=_____)) +
+ # geom_col(stat="identity", position=position_dodge(), colour="black") + #theme(legend.position="top")
+#p <- p + theme_________() + ylab("_______") + ....
+
+#p
+```
+
+### Reasoning
+
+Explain why you chose the particular plot, below.
+
+
+
+# Dr. Shortrigde's hydrologic data
+
+Dr. Shortridge is a Hydrologist in our department, and her work includes analyzing large hydrologic datasets. Here, imagine you’re asked to compare approaches for visualizing the distribution of monthly streamflow in 2020 for the Rappahannock River @ Fredericksburg.
+
+## Importing streamflow data
+The dataRetrieval package is pretty cool, allowing one to download data directly from NWIS, the online database for hydrologic information from the USGS. Here we are going to download daily streamflow data for a gage for a specific year using readNWISdv. Based on the help for the function, you'll need:
+
+- siteNumbers	: character USGS site number. This is usually an 8 digit number. Multiple sites can be requested with a character vector.
+- parameterCd	: character of USGS parameter code(s). This is usually an 5 digit number. For streamflow, the pcode is 00060
+- startDate	: character starting date for data retrieval in the form YYYY-MM-DD. Default is "" which indicates retrieval for the earliest possible record. Date arguments are always specified in local time.
+- endDate	: character ending date for data retrieval in the form YYYY-MM-DD. Default is "" which indicates retrieval for the latest possible record. Date arguments are always specified in local time.
+- statCd	: character USGS statistic code. This is usually 5 digits. Daily mean (00003) is the default.
+
+Below, we are going to assign variables for the period of interest.
+
+```{r}
+site_id <- '01668000' # station ID on the Rappahannock in Fredricksburg
+startDate <- '2020-01-01'
+endDate <- '2020-12-31'
+pCode <- '00060' # mean daily streamflow
+
+```
+
+## Download data
+
+You'll want to look up readNWISdv in the help menu.
+
+```{r}
+
+rawDailyQ <- readNWISdv(site_id,pCode, startDate, endDate)
+
+```
+
+## Wrangle data
+
+There are 5 columns associated with the data. Rename each column. 
+
+```{r}
+
+colnames(rawDailyQ) <-  c("ag","id","dcode","Q","Qqual")
+```
+
+### Add month column to dataset in 2 formats: as a number and as a factor
+
+(e.g. Jan, Feb, Mar...use label and abbr in the month function). You'll want to look up month and learn about `label` and `abbr` in the `month` function within the `lubridate` package, which makes dealing with dates and times easier.
+
+```{r}
+rawDailyQ$Mon <- month(rawDailyQ$dcode)
+
+rawDailyQ$Mona <- month(rawDailyQ$dcode,label=TRUE,abbr=TRUE)
+```
+
+
+## Plot the data
+
+### Create a boxplot of the monthly distrubtion in streamflows where x is using the column of months in number form (1-12)
+
+```{r Q-boxplot}
+p1 <- ggplot(rawDailyQ, aes(x = Mon, y = Q)) +
+  geom_boxplot()
+stamp_wrong(p1)
+```
+
+* Here, you'll notice that something is awry and you may be getting an error related to grouping. If your month column is not a factor, the boxplot will not be want you want. `geom_boxplot` wants a factor on one axis and a numeric on the other. In this case `Q` and `Mon` are both numeric. 
+
+* How do we fix this? There are several ways. As suggested in the error: When you are adding your x and y variable in the aes portion, make your month column a group by adding "group = colname"). For example, ggplot(data,aes(x =xname, y=yname, group = xname)). This is essentially using `group_by` to group on this variable prior to calculating the summary statistics that set the middle, box, and whiskers of the boxplot.
+
+```{r Q-boxplot-solution}
+p1<-ggplot(rawDailyQ, aes(x = , y = , group=)) +
+  geom_boxplot()
+p1
+```
+
+
+Another solution is to use the month column that is listed as a factor, `Mona`. (You could also make `Mon` a factor by `as.factor(Mon)`). Try using `Mona` below, and you'll see that for the distributions it'll be easier to work with! The second change was to normalize the streamflow data Q by 1000, which reduces the 5 zeroes to 1 on the y-axis. I did this directly by temporarily modifying the y variable in the `aes` statement, which is cool because this approach does not alter the primary dataset and associated readme file. In general, visualizing numbers between 0.1 and 100 is best practice. What are other approaches to do this? [scientific notation] The other change I included here was assigning the plot a variable, p1. Now, when I make changes, I can just build on p1. For example, when adding the labels...
+
+```{r}
+
+p1<-ggplot(rawDailyQ, aes(x = ___, y = ___)) + geom_boxplot() +ylab("Q x1000 [cfs]")
+p1
+
+p1<-ggplot(rawDailyQ, aes(y = ___, x = ___)) + geom_density_ridges() +ylab("Q x1000 [cfs]")
+p1
+```
+
+### Explore the other types of distribution plots based on exercise 3. 
+Explore themes (e.g. theme_cowplot; theme_fivethirtyeight) to add a pre-determined look to your visualization. Make what you think is the most informative plot below and explain your reasoning.
+
+```{r}
+
+```
+
+### Reasoning
+
+Why is this the most informative way of plotting this data, in your opinion?

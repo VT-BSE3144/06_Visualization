@@ -1,6 +1,6 @@
 ---
-title: "Week 5 - Visualization HW"
-author: "Your name here"
+title: "Week 6 - Visualization Problem Set"
+author: 
 output: pdf_document
 ---
 

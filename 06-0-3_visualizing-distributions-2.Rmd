@@ -39,6 +39,7 @@ library(ggridges)
 The dataset we will be working with contains information about the mean temperature for every day of the year 2016 in Lincoln, NE:
 ```{r titanic, echo = TRUE}
 lincoln_temps
+#display initial data
 ```
 
 ## Boxplots and violins
@@ -58,7 +59,7 @@ ggplot(lincoln_temps, aes(x = ___, y = ___)) +
 ```{r lincoln-box-solution}
 p <- ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
   geom_boxplot() + theme_fivethirtyeight()
-p
+p 
 ```
 
 Next, do the same but now using violins (`geom_violin()`) instead of boxplots.

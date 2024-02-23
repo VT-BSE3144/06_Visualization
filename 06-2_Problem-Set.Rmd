@@ -40,7 +40,7 @@ ff$PHB <- as.numeric(ff$PHB)
 
 ## Plot
 
-Here is a template for your plot code. Uncomment the below (highlight and click Code>Comment/Uncomment Lines) and fill in the underscore blanks and ellipses (...). Be sure that the plot contains proper labels, etc. 
+Here is a template for your plot code. Uncomment the lines below (highlight and click Code>Comment/Uncomment Lines) and fill in the underscore blanks and ellipses (...). Be sure that the plot contains proper labels, etc. 
 
 
 ```{r}

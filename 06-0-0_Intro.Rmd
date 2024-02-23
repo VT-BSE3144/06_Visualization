@@ -1,5 +1,5 @@
 ---
-title: "Week 6 - Data visualization" 
+title: "Week 6 - Data visualization"
 author: "Clay Wright"
 ---
 
@@ -14,7 +14,7 @@ Data visualizations are all around us. From what we read in the popular press to
 This is just one example that Bergstrom and West use in their recent book “Calling Bullshit”. In the table below are key points they implore us to learn and consider as we evaluate visualizations and make our own:
 
 |                                              |                                                                                                                                                            |
-|-----------------------------|-------------------------------------------|
+|------------------|------------------------------------------------------|
 | CALLING BULLSHIT - TOP ISSUES WITH PLOTS     | Why?                                                                                                                                                       |
 | 1\. Bar chart axes should include zero.      | Size gaps can mislead interpretation, and bar graphs meant to look at absolute magnnitude. [visual weight of each bar = value of bar, or proportional ink] |
 | 2\. Line plots need not include zero.        | Line graphs emphasize the change in the dependent variable as the independent variable changes.                                                            |
@@ -37,9 +37,8 @@ This week we will use a resource developed by Clause Wilke, who wrote the book [
 3.  Rule of proportional ink
 4.  Why a 0-axis for bar graphs, but not when plotting 2 lines on a x-y scatterplot?
 
-```{=html}
 <!-- -->
-```
+
 2.  [Mapping data.](https://clauswilke.com/dataviz/aesthetic-mapping.html) “Whenever we visualize data, we take data values and convert them in a systematic and logical way into the visual elements that make up the final graphic. Even though there are many different types of data visualizations, and on first glance a scatter plot, a pie chart, and a heatmap don’t seem to have much in common, all these visualizations can be described with a common language that captures how data values are turned into blobs of ink on paper or colored pixels on screen." The key insight is the following: All data visualizations map data values into quantifiable features of the resulting graphic. We refer to these features as **aesthetics**. [Wilke’s cliffnote slides](https://wilkelab.org/SDS375/slides/aesthetic-mappings.html#22) are here (optional).
 
 3.  [Types of visualizations](https://clauswilke.com/dataviz/directory-of-visualizations.html). Here, you’ll see examples of different visualizations that are useful in our field: amounts, distributions, proportions, x-y scatterplots, uncertainty, and geospatial data.
@@ -50,7 +49,7 @@ This week we will use a resource developed by Clause Wilke, who wrote the book [
 
 ![](images/global-temps.png)
 
-Out of Class: Tutorials to walk through on your own
+## Tutorials to walk through on your own
 
 Here, the idea is to reinforce the readings, and prepare you for success in the assignment.
 
@@ -63,6 +62,41 @@ I am not going to expect any of you to memorize these functions and approaches; 
 2.  Amounts Exercise 2 - [see Wilke’s slides here.](https://wilkelab.org/SDS375/slides/visualizing-amounts.html#1) Again, this is for you to apply and practice, building on aesthetics but with bar data.
 
 3.  Distributions Exercise 3 - [see Wilke’s slides here](https://wilkelab.org/SDS375/slides/visualizing-distributions-2.html#31). Lastly, this series highlights approaches to show distributions of data.
+
+## More on Color Palettes
+
+Below is a vignette from the Viridis package which has colorblind friendly color palletes.
+
+R Markdown enables you to weave together content and executable code into a finished document. To learn more about R Markdown see [rmarkdown.rstudio.org](https://rmarkdown.rstudio.com/). This template uses R Markdown to demonstrate the color palettes of R's Viridis package in three mediums:
+
+-   as an HTML, PDF, or Word document in `colors_document.Rmd`
+-   as a slide deck in `colors_presentation.Rmd`
+-   as a web page with interactive Shiny components in `colors_app.Rmd`
+
+### Previewing
+
+#### To preview the document
+
+1.  Open the file `colors_document.Rmd`.
+2.  Then click the Knit button that will appear above the opened file. This will display the document as an HTML file.
+3.  To display the document as a pdf or MS Word file, click the drop down menu to the left of the Knit icon and select one of:
+    a.  Knit to PDF
+    b.  Knit to Word
+
+#### To preview the presentation
+
+1.  Open the file `colors_presentation.Rmd`.
+2.  Then click the Knit button that will appear above the opened file. This will display the document as an ioslides HTML slide deck, which can be presented with any web browser.
+3.  To display the presentation as a Slidy (HTML), beamer (PDF), or MS PowerPoint slide deck, click the drop down menu to the left of the Knit icon and select one of:
+    a.  Knit to HTML (Slidy)
+    b.  Knit to PDF (Beamer)
+    c.  Knit to PowerPoint
+
+#### To preview the interactive document with Shiny components
+
+1.  Open the file `colors_app.Rmd`.
+2.  Then click the Run Document button that will appear above the opened file. Because the file contains the YAML line `runtime: shiny`, R Markdown will run the file as an interactive [Shiny](https://shiny.posit.co/) app.
+
 
 ## Problem Set
 
@@ -101,38 +135,5 @@ Here’s another example using theme_economist. When you create a plot, assign i
 
 For your ridge-line plot, choose a fill color that you like. You add the fill color within the `geom_density_ridges` function (e.g. `geom_density_ridges(rel_min_height = 0.01,fill="dodgerblue2")`. A list of colors can be found here: <http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf>
 
-![alt_text](images/image7.png "image_tooltip")
+![](images/ridgeline.png)
 
-## More on Color Palettes
-
-Below is a vignette from the Viridis package which has colorblind friendly color palletes.
-
-R Markdown enables you to weave together content and executable code into a finished document. To learn more about R Markdown see [rmarkdown.rstudio.org](https://rmarkdown.rstudio.com/). This template uses R Markdown to demonstrate the color palettes of R's Viridis package in three mediums:
-
--   as an HTML, PDF, or Word document in `colors_document.Rmd`
--   as a slide deck in `colors_presentation.Rmd`
--   as a web page with interactive Shiny components in `colors_app.Rmd`
-
-## Previewing
-
-### To preview the document
-
-1.  Open the file `colors_document.Rmd`.
-2.  Then click the Knit button that will appear above the opened file. This will display the document as an HTML file.
-3.  To display the document as a pdf or MS Word file, click the drop down menu to the left of the Knit icon and select one of:
-    a.  Knit to PDF
-    b.  Knit to Word
-
-### To preview the presentation
-
-1.  Open the file `colors_presentation.Rmd`.
-2.  Then click the Knit button that will appear above the opened file. This will display the document as an ioslides HTML slide deck, which can be presented with any web browser.
-3.  To display the presentation as a Slidy (HTML), beamer (PDF), or MS PowerPoint slide deck, click the drop down menu to the left of the Knit icon and select one of:
-    a.  Knit to HTML (Slidy)
-    b.  Knit to PDF (Beamer)
-    c.  Knit to PowerPoint
-
-### To preview the interactive document with Shiny components
-
-1.  Open the file `colors_app.Rmd`.
-2.  Then click the Run Document button that will appear above the opened file. Because the file contains the YAML line `runtime: shiny`, R Markdown will run the file as an interactive [Shiny](https://shiny.posit.co/) app.

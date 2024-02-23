@@ -65,7 +65,7 @@ I am not going to expect any of you to memorize these functions and approaches; 
 
 ## More on Color Palettes
 
-Below is a vignette from the Viridis package which has colorblind friendly color palletes.
+Also included in this weeks materials is a vignette from the Viridis package which has colorblind friendly color palletes.
 
 R Markdown enables you to weave together content and executable code into a finished document. To learn more about R Markdown see [rmarkdown.rstudio.org](https://rmarkdown.rstudio.com/). This template uses R Markdown to demonstrate the color palettes of R's Viridis package in three mediums:
 

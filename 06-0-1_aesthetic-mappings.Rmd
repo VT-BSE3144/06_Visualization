@@ -1,7 +1,7 @@
 ---
 #############################################################
 # This is a learnr tutorial. You can work through this document in two possible ways:
-# 1 recommended) You can click "Run Document" above. This will open an browser window displaying and webpage rendered from this markdown document and then you can work through the examples in the code windows there. 
+# 1 (recommended) You can click "Run Document" above. This will open an browser window displaying and webpage rendered from this markdown document and then you can work through the examples in the code windows there. 
 # Or 2) you can work within the markdown file below, and run each code chunk. Where you see red x's to the left of the lines, it means that you need to add code to make the chunk work. Below each incomplete chunk is an chunk showing the answer.  
 #############################################################
 title: "Aesthetic mappings"
@@ -11,6 +11,9 @@ runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
+
+#be sure to have correct packages installed!
+
 library(learnr)
 library(tidyverse)
 library(lubridate)
@@ -22,7 +25,7 @@ temperatures <- read_csv("https://wilkelab.org/SDS375/datasets/tempnormals.csv")
     location = factor(
       location, levels = c("Death Valley", "Houston", "San Diego", "Chicago")
     )
-  ) %>%
+  ) %>%       #this is the old piping symbol, can be used along w/ new version (|>) 
   select(location, day_of_year, month, temperature)
 
 temps_houston <- filter(temperatures, location == "Houston")
@@ -51,20 +54,25 @@ In the most basic use of ggplot, we call the `ggplot()` function with a dataset 
 Try this for yourself. Map the column `day_of_year` onto the x axis and the column `temperature` onto the y axis, and use `geom_line()` to display the data.
 
 ```{r ggplot, exercise=TRUE}
-ggplot(temps_houston, aes(x = day_of_year, y = temperature))+
- geom_line()
+ggplot(temps_houston, aes(x = ___, y = ___))+
+ ___()  #displays data
+
 ```
 
 ```{r ggplot-hint}
 p <- ggplot(temps_houston, aes(x = day_of_year, y = temperature)) +
   geom_line()
-p <- p + ylab("TEST")
+p <- p + ylab("TEST") #changing y axis label 
 p
 ```
 
 ```{r ggplot-solution}
 ggplot(temps_houston, aes(x = day_of_year, y = temperature)) +
   geom_line()
+#note that variables assigned to x & y are NOT in quotations
+#we are not assigning a string or title, rather assigning x & y to variables extracted from main data set
+#recall that main data set is read from the csv file in the first chunk
+#this way, we can choose 2 subsets to visualize 
 ```
 
 Try again. Now use `geom_point()` instead of `geom_line()`.
@@ -73,6 +81,7 @@ Try again. Now use `geom_point()` instead of `geom_line()`.
 ggplot(temps_houston, aes(x = day_of_year, y = temperature)) +
   geom_point()
 ```
+Thicker line!! - specific points making up line trend
 
 ```{r ggplot2-solution}
 ggplot(temps_houston, aes(x = day_of_year, y = temperature)) +

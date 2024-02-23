@@ -59,7 +59,7 @@ ggplot(lincoln_temps, aes(x = ___, y = ___)) +
 ```{r lincoln-box-solution}
 p <- ggplot(lincoln_temps, aes(x = month, y = mean_temp)) +
   geom_boxplot() + theme_fivethirtyeight()
-p 
+p #print variable
 ```
 
 Next, do the same but now using violins (`geom_violin()`) instead of boxplots.

@@ -22,14 +22,14 @@ library(ggthemes)
 
 # Dr. Senger's plot 2a
 
-Figure 1. Dr. Senger is a Metabolic Engineer in our department; perhaps you've had a class with him or will in the next year or two. His work includes developing biosensors, and he has a recent biosensor publication, available in Pubmed (see here). Imagine you’re an undergrad researcher in Dr. Senger’s group, and are asked to recreate figure 2a from the publication within Rstudio. The raw data for the figure is available in the supplemental information, and in the Rstudio workspace for this week as an excel file (file contains data for all figures). Follow examples for bar graphs from the exercises (visualizing amounts)
+Figure 1. Dr. Senger is a Metabolic Engineer in our department; perhaps you've had a class with him or will in the next year or two. His work includes developing biosensors, such as in [this publication](https://peerj.com/articles/9805/). Imagine you’re an undergrad researcher in Dr. Senger’s group, and are asked to recreate figure 2a from the publication within Rstudio. The raw data for the figure is available in the supplemental information, and in the Rstudio workspace for this week as an excel file (file contains data for all figures). Follow examples for bar graphs from the exercises (visualizing amounts)
 
 ## Read in and wrangle the data
 
 Let's read in the raw data from the supplement and format it. 
 
 ```{r}
-SupplementaryRawDataR2 <- read_excel("raw_data/SupplementaryRawDataR2.xlsx", sheet = "Sheet1")
+SupplementaryRawDataR2 <- read_excel("data/SupplementaryRawDataR2.xlsx", sheet = "Sheet1")
 # select part of data frame related to figure 2a
 ff <- SupplementaryRawDataR2[1:9,4:6] 
 # change column names

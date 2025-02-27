@@ -152,3 +152,70 @@ Explore themes (e.g. theme_cowplot; theme_fivethirtyeight) to add a pre-determin
 ### Reasoning
 
 Why is this the most informative way of plotting this data, in your opinion?
+
+
+# Another bioreactor
+
+## Background
+
+In biological systems engineering, monitoring and analyzing the dynamics of a fermentation process is essential. In this homework, you will work with data from a bioreactor experiment. The experiment monitors the growth of microorganisms under two conditions: Control and Experimental (e.g., with a modified nutrient mix). Measurements include biomass concentration (g/L) and substrate concentration (g/L) over time.
+
+## Data Description
+
+You are provided with a CSV file named 'bioreactor_data.csv' that contains the following columns:
+
+- Time: Time of measurement in hours.
+- Treatment: The treatment group (either "Control" or "Experimental").
+- Biomass: Biomass concentration in g/L.
+- Substrate: Substrate concentration in g/L.
+
+## Tasks
+
+### Data Import & Preparation:
+
+- Write an R script that reads the CSV file (bioreactor_data.csv) into a data frame.
+- Ensure that the data types are correctly assigned (e.g., Time as numeric, Treatment as a factor).
+
+
+```{r}
+
+```
+
+### Basic Visualization:
+
+- Use ggplot2 to create a line plot of Biomass versus Time.
+- Differentiate the two treatments by color and add points to mark the measurements.
+
+
+```{r}
+
+```
+
+### Enhanced Plot Features:
+
+- Add a smoothing line using `geom_smooth()` for each treatment to help reveal trends over time.
+- Customize your plot by adding:
+  - Informative axis labels (e.g., “Time (hours)” and “Biomass (g/L)”).
+  - A descriptive title.
+  - A legend that clearly indicates the treatment groups.
+  - An appropriate theme (for example, theme_minimal()).
+
+```{r}
+
+```
+
+### Extension:
+
+- Create a faceted plot using `facet_wrap()` to display separate panels for each treatment.
+
+```{r}
+
+```
+
+
+- Additionally, generate a second plot that shows Substrate concentration versus Time using similar styling, and compare it with your enhanced biomass plot.
+
+```{r}
+
+```
+
